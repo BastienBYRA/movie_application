@@ -1,15 +1,24 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+  <div class="d-flex"> 
+    <MovieItem :listMovie="listMovie"/>
+  </div>
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MovieItem from './components/MovieItem.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    MovieItem
+  },
+  data: function() {
+    return {
+      listMovie: ["Truc 1", "Truc 2"],
+      search: ""
+    }
   }
 }
 </script>
