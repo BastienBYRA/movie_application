@@ -1,22 +1,23 @@
 <template>
-        <div class="px-6" v-for="movie in listMovie" v-bind:key="movie">
-            <div>
-                <img class="poster" src="https://marketplace.canva.com/EAFH3gODxw4/1/0/1131w/canva-black-%26-white-modern-mystery-forest-movie-poster-rLty9dwhGG4.jpg"/>
-            </div>
-            <div>
-                <h1>{{ movie.title }}</h1>
-                <p>{{ movie.creator.lastname }} {{ movie.creator.firstname }}</p>
-                <p>{{ movie.parution_date }}, {{ movie.language }}</p>
-                <!-- <p>Genres : {{ concat_genre(movie.genres) }}</p> -->
-                <a>Lien de detail</a>
-            </div>
+    <div class="size-per-movies">
+        <div class="center">
+            <img class="poster" src="https://marketplace.canva.com/EAFH3gODxw4/1/0/1131w/canva-black-%26-white-modern-mystery-forest-movie-poster-rLty9dwhGG4.jpg"/>
         </div>
+        <div>
+            <h1>{{ movie.title }}</h1>
+            <p>{{ movie.creator.lastname }} {{ movie.creator.firstname }}</p>
+            <p>{{ movie.parution_date }}, {{ movie.language }}</p>
+            <!-- <p>Genres : {{ concat_genre(movie.genres) }}</p> -->
+            <a>Lien de detail</a>
+        </div>
+    </div>
 </template>
 
 <script>
 export default {
     props: {
-        listMovie: []
+        listMovie: [],
+        movie: {}
     },
     data: function() {
       return {
@@ -37,5 +38,13 @@ export default {
     .poster {
         max-height: 200px;
         max-width: 140px;
+    }
+
+    .size-per-movies {
+        width: 300px;
+    }
+
+    .center {
+        text-align: center;
     }
 </style>
