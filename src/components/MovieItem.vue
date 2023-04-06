@@ -1,22 +1,23 @@
 <template>
-    <div class="size-per-movies">
-        <div class="center">
-            <img class="poster" src="https://marketplace.canva.com/EAFH3gODxw4/1/0/1131w/canva-black-%26-white-modern-mystery-forest-movie-poster-rLty9dwhGG4.jpg"/>
-        </div>
-        <div>
-            <h1>{{ movie.title }}</h1>
-            <p>{{ movie.creator.lastname }} {{ movie.creator.firstname }}</p>
-            <p>{{ movie.parution_date }}, {{ movie.language }}</p>
-            <!-- <p>Genres : {{ concat_genre(movie.genres) }}</p> -->
-            <a>Lien de detail</a>
-        </div>
+    <div class="size-per-movies py-3 px-8 center">
+        <router-link :to="{ name: 'details', params: { id: movie.title } }">
+            <div>
+                <img class="poster" src="https://marketplace.canva.com/EAFH3gODxw4/1/0/1131w/canva-black-%26-white-modern-mystery-forest-movie-poster-rLty9dwhGG4.jpg"/>
+            </div>
+            <div>
+                <p class="text-ellipsis">{{ movie.title }}</p>
+                <!-- <p>{{ movie.creator.lastname }} {{ movie.creator.firstname }}</p>
+                <p>{{ movie.parution_date }}, {{ movie.language }}</p>
+                <p>Genres : {{ concat_genre }}</p>
+                <a>Lien de detail</a> -->
+            </div>
+        </router-link>
     </div>
 </template>
 
 <script>
 export default {
     props: {
-        listMovie: [],
         movie: {}
     },
     data: function() {
@@ -25,10 +26,8 @@ export default {
       }
     },
     computed: {
-        concat_genre(array_genres) {
-            console.log(array_genres[0])
-            // return "truc"
-            return array_genres.join(', ')
+        concat_genre() {
+            return this.movie.genres.join(', ')
         }
     }
 }
@@ -37,11 +36,20 @@ export default {
 <style scoped>
     .poster {
         max-height: 200px;
-        max-width: 140px;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+    }
+
+    .text-ellipsis {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .size-per-movies {
-        width: 300px;
+        width: 250px;
     }
 
     .center {

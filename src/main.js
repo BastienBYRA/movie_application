@@ -1,8 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router' // Importez createRouter et createWebHistory depuis vue-router
-import HomePage from './pages/Home.vue' // Importez votre composant HomePage
-// import AboutPage from './components/AboutPage.vue' // Importez votre composant AboutPage
+import HomePage from './pages/HomePage.vue'
+import DetailsPage from './pages/DetailsPage.vue'
 
 // Vuetify
 import 'vuetify/styles'
@@ -20,8 +20,15 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      name: 'home',
       component: HomePage,
     },
+    {
+      path: '/movie/:id',
+      name: 'details',
+      component: DetailsPage,
+      props: true
+    }
   ],
 })
 

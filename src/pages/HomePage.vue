@@ -6,10 +6,6 @@
         <br><br>
     </div>
   
-  
-    <!-- <div class="d-flex"> 
-      <MovieItem :listMovie="movieSearched"/>
-    </div> -->
     <div class="d-flex movie-spacing">
         <div v-for="movie in listMovie" v-bind:key="movie"> 
             <MovieItem :movie="movie"/>
@@ -41,7 +37,7 @@
             }
           },
           {
-            title: "Name mov",
+            title: "Un nom bien plus long que le précédent",
             parution_date: 1998,
             language: "English",
             genres: ["Science", "Drama"],
