@@ -1,6 +1,6 @@
 <template>
     <div class="size-per-movies py-3 px-8 center">
-        <router-link :to="{ name: 'details', params: { id: movie.title } }">
+        <router-link :to="{ name: 'details', params: { id: movie.id } }">
             <div>
                 <img class="poster" src="https://marketplace.canva.com/EAFH3gODxw4/1/0/1131w/canva-black-%26-white-modern-mystery-forest-movie-poster-rLty9dwhGG4.jpg"/>
             </div>

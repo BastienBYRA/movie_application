@@ -17,6 +17,7 @@
   
   <script>
   import MovieItem from '../components/MovieItem.vue'
+  import { store } from '../data/store.js'
   
   export default {
     name: 'App',
@@ -25,28 +26,31 @@
     },
     data: function() {
       return {
-        listMovie: [
-          {
-            title: "Name mov",
-            parution_date: 1998,
-            language: "English",
-            genres: ["Science", "Drama"],
-            creator: {
-              firstname: "Jack",
-              lastname: "DUPOND"
-            }
-          },
-          {
-            title: "Un nom bien plus long que le précédent",
-            parution_date: 1998,
-            language: "English",
-            genres: ["Science", "Drama"],
-            creator: {
-              firstname: "Jack",
-              lastname: "DUPOND"
-            }
-          }
-        ],
+        // listMovie: [
+        //   {
+        //     id: 1,
+        //     title: "Name mov",
+        //     parution_date: 1998,
+        //     language: "English",
+        //     genres: ["Science", "Drama"],
+        //     creator: {
+        //       firstname: "Jack",
+        //       lastname: "DUPOND"
+        //     }
+        //   },
+        //   {
+        //     id: 2,
+        //     title: "Un nom bien plus long que le précédent",
+        //     parution_date: 1998,
+        //     language: "English",
+        //     genres: ["Science", "Drama"],
+        //     creator: {
+        //       firstname: "Jack",
+        //       lastname: "DUPOND"
+        //     }
+        //   }
+        // ],
+        listMovie: store.listMovie,
         search: ""
       }
     },
