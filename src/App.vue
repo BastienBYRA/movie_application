@@ -10,7 +10,7 @@
         >
         </v-img>
       </v-toolbar-items>
-      <v-toolbar-title>Mon application</v-toolbar-title>
+      <v-toolbar-title>~ Movie-Vue ~</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-app-bar>
 

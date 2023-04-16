@@ -6,10 +6,6 @@
             </div>
             <div>
                 <p class="text-ellipsis">{{ movie.title }}</p>
-                <!-- <p>{{ movie.creator.lastname }} {{ movie.creator.firstname }}</p>
-                <p>{{ movie.parution_date }}, {{ movie.language }}</p>
-                <p>Genres : {{ concat_genre }}</p>
-                <a>Lien de detail</a> -->
             </div>
         </router-link>
     </div>
@@ -36,8 +32,7 @@ export default {
 <style scoped>
     .poster {
         max-height: 200px;
-        aspect-ratio: 4/3;
-        object-fit: cover;
+        aspect-ratio: 3/4;
     }
 
     .text-ellipsis {
@@ -49,7 +44,7 @@ export default {
     }
 
     .size-per-movies {
-        width: 250px;
+        width: 220px;
     }
 
     .center {

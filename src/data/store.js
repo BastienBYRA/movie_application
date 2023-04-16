@@ -28,6 +28,12 @@ export const store = reactive({
       notation: null,
     },
   ],
+
+  /**
+   *
+   * @param {Integer} id
+   * @param {Movie} newElement
+   */
   updateMovie(id, newElement) {
     this.listMovie.forEach((element, index) => {
       if (element.id === id) {
@@ -39,8 +45,12 @@ export const store = reactive({
   notationMovie(id, notation) {
     this.listMovie.forEach((element, index) => {
       if (element.id === id) {
-        this.listMovie[index].notationMovie = notation;
+        this.listMovie[index].notation = notation;
       }
     });
+  },
+
+  deleteMovie(id) {
+    this.listMovie = this.listMovie.filter((x) => x.id != id);
   },
 });
