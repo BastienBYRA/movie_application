@@ -1,9 +1,10 @@
 <template>
     <div class="mt-16">
 
-        <router-link :to="{ name: 'home' }">
+        <!-- <router-link :to="{ name: 'home' }">
             <p class="previous-page">⟵ Retour a la liste des films</p>
-        </router-link>
+        </router-link> -->
+        <PreviousPageComponentVue :namePage="this.pageToRedirect" :textLink="this.textLink" />
 
         <br/>
 
@@ -20,12 +21,8 @@
                         <p v-if="movie.notation != null">Votre note : {{ movie.notation }}</p>
                         <p v-else>Aucune note.</p>
 
-                        <div>
-                            <v-select :items="['1', '2', '3', '4', '5']" v-model="movieNotation" label="Votre note">
-                            </v-select>
-                        </div>
                         <div class="d-flex">
-                            <v-btn color="green" v-on:click="noteMovie">Noter</v-btn>
+                            <v-btn color="green" v-on:click="goToNotation">Noter</v-btn>
                             <v-btn color="primary" class="ml-2">Modifier</v-btn>
                             <v-btn color="red" class="ml-auto">Supprimer</v-btn>
                         </div>
@@ -44,8 +41,12 @@
 <script>
 import { getCurrentInstance } from 'vue';
 import { store } from '../data/store.js'
+import PreviousPageComponentVue from '@/components/PreviousPageComponent.vue';
 
 export default {
+    components: {
+        PreviousPageComponentVue
+    },
     setup() {
         const instance = getCurrentInstance(); // Obtenir l'instance du composant
         const $route = instance.proxy.$route; // Accéder à $route depuis l'instance du composant
@@ -57,6 +58,9 @@ export default {
     },
     data() {
         return {
+            textLink: "Retour à la liste des films",
+            pageToRedirect: "home",
+
             movie: {},
             listMovie: store.listMovie,
             movieNotation: null
@@ -76,25 +80,22 @@ export default {
         }
     },
     methods: {
-        noteMovie() {
-            console.log("test ! ;D")
-            console.log(!isNaN(this.movieNotation))
-            if(!isNaN(this.movieNotation))
-                store.notationMovie(this.movie.id, this.movieNotation);
-            else
-                this.movieNotation = 0;
-            // store.deleteMovie(this.movie.id);
-            // this.$router.push("/")
+        goToNotation() {
+            this.$router.push({ name: 'notation', params: { id: this.movieId } })
         }
+        
+        // noteMovie() {
+        //     console.log(!isNaN(this.movieNotation))
+        //     if(!isNaN(this.movieNotation))
+        //         store.notationMovie(this.movie.id, this.movieNotation);
+        //     else
+        //         this.movieNotation = 0;
+        // }
     }
 }
 </script>
 
 <style scoped>
-    .previous-page {
-        opacity: 0.8;
-        color: grey;
-    }
     .gap-poster-action {
         gap:16px;
     }

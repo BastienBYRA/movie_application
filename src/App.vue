@@ -43,5 +43,10 @@ export default {
     top: 0; 
     z-index: 50; 
   }
-/* styles spécifiques à App.vue */
+
+  .previous-page {
+    opacity: 0.8;
+    color: grey;
+  }
+
 </style>

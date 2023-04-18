@@ -3,6 +3,7 @@ import App from "./App.vue";
 import { createRouter, createWebHistory } from "vue-router"; // Importez createRouter et createWebHistory depuis vue-router
 import HomePage from "./pages/HomePage.vue";
 import DetailsPage from "./pages/DetailsPage.vue";
+import NotationPage from "./pages/NotationPage.vue";
 
 // Vuetify
 import "vuetify/styles";
@@ -34,6 +35,12 @@ const router = createRouter({
         movie: Object,
         ...route.params,
       }),
+    },
+    {
+      path: "/movie/:id/note",
+      name: "notation",
+      component: NotationPage,
+      props: true,
     },
   ],
 });
