@@ -4,7 +4,7 @@
             <div>
                 <v-img class="poster" :src="movie.posterURL"></v-img>
             </div>
-            <div>
+            <div class="mt-2">
                 <p class="text-ellipsis">{{ movie.title }}</p>
             </div>
         </router-link>
@@ -37,7 +37,7 @@ export default {
 
     .text-ellipsis {
         display: -webkit-box;
-        -webkit-line-clamp: 2;
+        -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;

@@ -28,10 +28,10 @@ export default {
 
 <style>
 
-  .v-application__wrap {
-    margin-left: 60px;
-    margin-right: 60px;
-  }
+  /* .v-application__wrap {
+    padding-left: 60px;
+    padding-right: 60px;
+  } */
 
   #app {
     margin-top: 20px;

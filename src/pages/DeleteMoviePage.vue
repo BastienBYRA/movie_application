@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-16">
+    <div class="mt-16 mx-16">
 
         <PreviousPageComponentVue :namePage="pageToRedirect" :textLink="textLink" :idParam="movieId" />
 

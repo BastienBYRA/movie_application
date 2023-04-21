@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-16">
+    <div class="mt-16 mx-16">
 
         <PreviousPageComponentVue :namePage="this.pageToRedirect" :textLink="this.textLink" />
 
@@ -98,7 +98,7 @@ export default {
     }
     .side-poster {
         aspect-ratio: 3/4;
-        max-width: 200px;
+        max-width: 160px;
     }
 /* Votre style ici */
 </style>

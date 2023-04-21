@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-16">
+    <div class="mt-16 mx-16">
 
         <PreviousPageComponentVue :namePage="pageToRedirect" :textLink="textLink" />
 
@@ -22,16 +22,6 @@ export default {
         PreviousPageComponentVue,
         FormMovie
     },
-    // setup() {
-    //     //Pour récupérer l'id du movie dans le javascript
-    //     const instance = getCurrentInstance();
-    //     const $route = instance.proxy.$route;
-    //     const movieId = $route.params.id;
-
-    //     return {
-    //         movieId
-    //     };
-    // },
     data() {
         return {
             textLink: "Retour à la liste des films",
