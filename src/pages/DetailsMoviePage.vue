@@ -1,21 +1,19 @@
 <template>
     <div class="mt-16">
 
-        <!-- <router-link :to="{ name: 'home' }">
-            <p class="previous-page">⟵ Retour a la liste des films</p>
-        </router-link> -->
         <PreviousPageComponentVue :namePage="this.pageToRedirect" :textLink="this.textLink" />
 
         <br/>
 
         <div class="d-flex gap-poster-action">
-            <img class="side-poster" src="https://marketplace.canva.com/EAFH3gODxw4/1/0/1131w/canva-black-%26-white-modern-mystery-forest-movie-poster-rLty9dwhGG4.jpg"/>
+            <img class="side-poster" :src="movie.posterURL"/>
             <div class="w-100">
-                <h1>{{ movie.title }}</h1>
+                <h1 class="underline">{{ movie.title }}</h1>
                 <div v-if="movie.creator" class="h-100 d-flex flex-column">
                     <div>
-                        <p>Créé par {{ movie.creator.firstname }} {{ movie.creator.lastname }}, en {{ movie.parution_date }}</p>
+                        <p>Créé par {{ movie.creator.firstname }} {{ movie.creator.lastname }} ({{ movie.creator.nationality }}), en {{ movie.parution_date }}</p>
                         <p>Genres : {{ concat_genre }}</p>
+                        <p>Langue : {{ movie.language }}</p>
                     </div>
                     <div class="mt-auto d-flex flex-column mb-12">
                         <p v-if="movie.notation != null">Votre note : {{ movie.notation }}</p>
@@ -23,8 +21,8 @@
 
                         <div class="d-flex">
                             <v-btn color="green" v-on:click="goToNotation">Noter</v-btn>
-                            <v-btn color="primary" class="ml-2">Modifier</v-btn>
-                            <v-btn color="red" class="ml-auto">Supprimer</v-btn>
+                            <v-btn color="primary" class="ml-2" v-on:click="goToEdit">Modifier</v-btn>
+                            <v-btn color="red" class="ml-auto" v-on:click="goToDelete">Supprimer</v-btn>
                         </div>
                     </div>
                 </div>
@@ -48,12 +46,13 @@ export default {
         PreviousPageComponentVue
     },
     setup() {
-        const instance = getCurrentInstance(); // Obtenir l'instance du composant
-        const $route = instance.proxy.$route; // Accéder à $route depuis l'instance du composant
-        const movieId = $route.params.id; // Déclarer movieId et lui attribuer la valeur de $route.params.id
+        //Pour récupérer l'id du movie dans le javascript
+        const instance = getCurrentInstance();
+        const $route = instance.proxy.$route;
+        const movieId = $route.params.id;
 
         return {
-            movieId // Retourner movieId depuis la fonction setup()
+            movieId
         };
     },
     data() {
@@ -82,15 +81,13 @@ export default {
     methods: {
         goToNotation() {
             this.$router.push({ name: 'notation', params: { id: this.movieId } })
+        },
+        goToDelete() {
+            this.$router.push({ name: 'delete', params: { id: this.movieId } })
+        },
+        goToEdit() {
+            this.$router.push({ name: 'edit', params: { id: this.movieId } })
         }
-        
-        // noteMovie() {
-        //     console.log(!isNaN(this.movieNotation))
-        //     if(!isNaN(this.movieNotation))
-        //         store.notationMovie(this.movie.id, this.movieNotation);
-        //     else
-        //         this.movieNotation = 0;
-        // }
     }
 }
 </script>
@@ -100,7 +97,7 @@ export default {
         gap:16px;
     }
     .side-poster {
-        aspect-ratio: 3 / 4;
+        aspect-ratio: 3/4;
         max-width: 200px;
     }
 /* Votre style ici */

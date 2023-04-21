@@ -5,27 +5,33 @@ export const store = reactive({
   listMovie: [
     {
       id: 1,
-      title: "Name mov",
-      parution_date: 1998,
-      language: "English",
-      genres: ["Science", "Drama"],
+      title: "Super Mario Bros. le film",
+      parution_date: 2023,
+      language: "Français",
+      genres: ["Aventure", "Comedie"],
       creator: {
-        firstname: "Jack",
-        lastname: "DUPOND",
+        firstname: "Matthew",
+        lastname: "Fogel",
+        nationality: "Indéfini",
       },
       notation: null,
+      posterURL:
+        "https://assets-prd.ignimgs.com/2023/02/03/foevbcsayamvqpf-1675462826997.jpg",
     },
     {
       id: 2,
-      title: "Un nom bien plus long que le précédent",
-      parution_date: 1998,
-      language: "English",
-      genres: ["Science", "Drama"],
+      title: "Les Animaux fantastiques : Les Secrets de Dumbledore",
+      parution_date: 2022,
+      language: "Français",
+      genres: ["Aventure", "Fantasy"],
       creator: {
-        firstname: "Jack",
-        lastname: "DUPOND",
+        firstname: "David",
+        lastname: "Yates",
+        nationality: "Britannique",
       },
       notation: null,
+      posterURL:
+        "https://www.les400coups.org/affiches/bigger/animauxfantastiques3.jpg",
     },
   ],
 
@@ -52,5 +58,30 @@ export const store = reactive({
 
   deleteMovie(id) {
     this.listMovie = this.listMovie.filter((x) => x.id != id);
+  },
+
+  generateEmptyMovie() {
+    let newMovie = {
+      id: null,
+      title: "",
+      parution_date: 0,
+      language: "",
+      genres: [],
+      creator: {
+        firstname: "",
+        lastname: "",
+        nationality: "",
+      },
+      notation: null,
+      posterURL: "",
+    };
+
+    return newMovie;
+  },
+
+  createMovie(movie) {
+    movie.id = (Math.random() + 1).toString(36).substring(2);
+    this.listMovie.push(movie);
+    return movie.id;
   },
 });

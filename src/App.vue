@@ -48,5 +48,8 @@ export default {
     opacity: 0.8;
     color: grey;
   }
+  .underline {
+    text-decoration: underline;
+  }
 
 </style>

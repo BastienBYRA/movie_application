@@ -2,8 +2,11 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import { createRouter, createWebHistory } from "vue-router"; // Importez createRouter et createWebHistory depuis vue-router
 import HomePage from "./pages/HomePage.vue";
-import DetailsPage from "./pages/DetailsPage.vue";
-import NotationPage from "./pages/NotationPage.vue";
+import DetailsPage from "./pages/DetailsMoviePage.vue";
+import NotationPage from "./pages/NotationMoviePage.vue";
+import DeletePage from "./pages/DeleteMoviePage.vue";
+import EditPage from "./pages/EditMoviePage.vue";
+import CreatePage from "./pages/CreateMoviePage.vue";
 
 // Vuetify
 import "vuetify/styles";
@@ -25,21 +28,32 @@ const router = createRouter({
       component: HomePage,
     },
     {
-      // history: createWebHistory(),
+      path: "/create",
+      name: "create",
+      component: CreatePage,
+    },
+    {
       path: "/movie/:id",
       name: "details",
       component: DetailsPage,
-      // props: true,
-      // props: { movie: Object },
-      props: (route) => ({
-        movie: Object,
-        ...route.params,
-      }),
+      props: true,
     },
     {
       path: "/movie/:id/note",
       name: "notation",
       component: NotationPage,
+      props: true,
+    },
+    {
+      path: "/movie/:id/delete",
+      name: "delete",
+      component: DeletePage,
+      props: true,
+    },
+    {
+      path: "/movie/:id/edit",
+      name: "edit",
+      component: EditPage,
       props: true,
     },
   ],

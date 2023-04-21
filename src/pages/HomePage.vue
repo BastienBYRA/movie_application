@@ -6,13 +6,19 @@
         <br><br>
     </div>
   
-    <div class="d-flex movie-spacing">
-        <div v-for="movie in listMovie" v-bind:key="movie"> 
+    <div v-if="movieSearched.length > 0" class="d-flex movie-spacing">
+        <div v-for="movie in movieSearched" v-bind:key="movie"> 
             <MovieItem :movie="movie"/>
         </div>
     </div>
+    <div v-else>
+      <h1 class="danger-text text-center">Pas de film disponible !</h1>
+    </div>
 
-  
+    <br/><br/>
+    <hr/>
+    <v-btn color="green w-200px mt-6" v-on:click="goToCreate">Ajouter un film</v-btn>
+
   </template>
   
   <script>
@@ -26,30 +32,6 @@
     },
     data: function() {
       return {
-        // listMovie: [
-        //   {
-        //     id: 1,
-        //     title: "Name mov",
-        //     parution_date: 1998,
-        //     language: "English",
-        //     genres: ["Science", "Drama"],
-        //     creator: {
-        //       firstname: "Jack",
-        //       lastname: "DUPOND"
-        //     }
-        //   },
-        //   {
-        //     id: 2,
-        //     title: "Un nom bien plus long que le précédent",
-        //     parution_date: 1998,
-        //     language: "English",
-        //     genres: ["Science", "Drama"],
-        //     creator: {
-        //       firstname: "Jack",
-        //       lastname: "DUPOND"
-        //     }
-        //   }
-        // ],
         listMovie: store.listMovie,
         search: ""
       }
@@ -62,19 +44,22 @@
           movie.creator.lastname.toLowerCase().includes(this.search.toLowerCase()))
       }
     },
+    methods: {
+        goToCreate() {
+            this.$router.push({ name: 'create' })
+        },
+    }
   }
   </script>
   
-  <style>
-  /* #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-  } */
+  <style scoped>
 
+  .w-200px {
+    width: 200px
+  }
+  .danger-text {
+    color: red;
+  }
   .movie-spacing {
     gap: 50px;
   }

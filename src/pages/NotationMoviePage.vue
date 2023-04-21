@@ -3,7 +3,7 @@
 
         <PreviousPageComponentVue :namePage="pageToRedirect" :textLink="textLink" :idParam="movieId" />
 
-        <h1 class="mt-3">Noter le film {{ movie.title }}</h1>
+        <h1 class="mt-3">Noter le film <span class="underline">{{ movie.title }}</span></h1>
 
         <div>
             <NotationComponent v-if="movieNotation != null" :movie="movie" :movieNotation="movieNotation" @noteMovie="noteMovie"/>
@@ -24,12 +24,13 @@ export default {
         PreviousPageComponentVue
     },
     setup() {
-        const instance = getCurrentInstance(); // Obtenir l'instance du composant
-        const $route = instance.proxy.$route; // Accéder à $route depuis l'instance du composant
-        const movieId = $route.params.id; // Déclarer movieId et lui attribuer la valeur de $route.params.id
+        //Pour récupérer l'id du movie dans le javascript
+        const instance = getCurrentInstance();
+        const $route = instance.proxy.$route;
+        const movieId = $route.params.id;
 
         return {
-            movieId // Retourner movieId depuis la fonction setup()
+            movieId
         };
     },
     data() {
@@ -43,7 +44,7 @@ export default {
         };
     },
     mounted() {
-        this.movie = this.listMovie.find(x => x.id == this.movieId); // Utiliser this.movieId pour accéder à la valeur de movieId
+        this.movie = this.listMovie.find(x => x.id == this.movieId);
         
         if(this.movie.notation != null && !isNaN(this.movie.notation))
             this.movieNotation = this.movie.notation
