@@ -1,6 +1,8 @@
 <template>
     <div>
         <h1 v-if="errorMessage != ''" class="error-message">{{ this.errorMessage }}</h1>
+
+        <!-- Textfields concernant le FILM -->
         <p>Film</p>
         <v-text-field label="Titre :" v-model="newMovie.title" type="text"/>
         <v-text-field label="Date de parution :" v-model="newMovie.parution_date" type="number"/>
@@ -12,6 +14,7 @@
             </v-select>
         </div>
         
+        <!-- Textfields concernant le CREATEUR du film -->
         <div v-if="newMovie.creator">
             <p>Createur</p>
             <v-text-field label="Nom :" v-model="newMovie.creator.firstname" type="text"/>
@@ -19,13 +22,12 @@
             <v-text-field label="Nationalité :" v-model="newMovie.creator.nationality" type="text"/>
         </div>
 
+        <!-- Bouton pour confirmer la validation des champs -->
         <div v-if="action == 'CREATE'">
             <v-btn color="green" @click="checkFieldsNotEmpty">Ajouter</v-btn>
-            <!-- <v-btn color="green" @click="$emit('saveMovie', newMovie)">Ajouter</v-btn> -->
         </div>
         <div v-else-if="action == 'EDIT'">
             <v-btn color="primary" @click="checkFieldsNotEmpty">Mettre à jour</v-btn>
-            <!-- <v-btn color="primary" @click="$emit('editMovie', newMovie)">Mettre à jour</v-btn> -->
         </div>
         <div v-else>
             <h1>Vous ne pouvez pas sauvegarder vos modifications.</h1>
@@ -47,12 +49,12 @@ export default {
       }
     },
     mounted() {
-        console.log(this.movie)
-        // this.movie = this.listMovie.find(x => x.id == this.movieId);
-        
         this.newMovie = JSON.parse(JSON.stringify(this.movie));
     },
     methods: {
+        /**
+         * Verifie que tout les champs sont remplis, si non, empeche l'event et affiche un message d'erreur.
+         */
         checkFieldsNotEmpty() {
             this.errorMessage = ""
 

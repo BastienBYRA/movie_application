@@ -36,8 +36,8 @@ export const store = reactive({
   ],
 
   /**
-   *
-   * @param {Integer} id
+   * Mets a jour l'objet movie
+   * @param {Number} id
    * @param {Movie} newElement
    */
   updateMovie(id, newElement) {
@@ -48,6 +48,11 @@ export const store = reactive({
     });
   },
 
+  /**
+   * Ajoute / Modifie la note du film
+   * @param {Number} id
+   * @param {Movie} notation
+   */
   notationMovie(id, notation) {
     this.listMovie.forEach((element, index) => {
       if (element.id === id) {
@@ -56,10 +61,18 @@ export const store = reactive({
     });
   },
 
+  /**
+   * Supprime le film de la liste des films
+   * @param {Number} id
+   */
   deleteMovie(id) {
     this.listMovie = this.listMovie.filter((x) => x.id != id);
   },
 
+  /**
+   * Génère un objet Movie vide
+   * @returns Movie
+   */
   generateEmptyMovie() {
     let newMovie = {
       id: null,
@@ -79,8 +92,13 @@ export const store = reactive({
     return newMovie;
   },
 
+  /**
+   * Créer un objet Movie
+   * @param {Number} movie
+   * @returns
+   */
   createMovie(movie) {
-    movie.id = (Math.random() + 1).toString(36).substring(2);
+    movie.id = (Math.random() + 1).toString(36).substring(2); //Génère un ID 'aléatoire'
     this.listMovie.push(movie);
     return movie.id;
   },

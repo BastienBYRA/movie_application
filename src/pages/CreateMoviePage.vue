@@ -32,11 +32,9 @@ export default {
     },
     mounted() {
         this.movie = store.generateEmptyMovie();
-        console.log(this.movie)
     },
     methods: {
         saveMovie(newMovie) {
-            console
             let newIdMovie = store.createMovie(newMovie)
             this.$router.push({ name: 'details', params: { id: newIdMovie } })
         }

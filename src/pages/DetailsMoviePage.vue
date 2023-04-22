@@ -7,24 +7,33 @@
 
         <div class="d-flex gap-poster-action">
             <img class="side-poster" :src="movie.posterURL"/>
+
             <div class="w-100">
                 <h1 class="underline">{{ movie.title }}</h1>
+
                 <div v-if="movie.creator" class="h-100 d-flex flex-column">
+
+                    <!-- Information du film (Général) -->
                     <div>
                         <p>Créé par {{ movie.creator.firstname }} {{ movie.creator.lastname }} ({{ movie.creator.nationality }}), en {{ movie.parution_date }}</p>
                         <p>Genres : {{ concat_genre }}</p>
                         <p>Langue : {{ movie.language }}</p>
                     </div>
+
+                    <!-- Information du film (Note) -->
                     <div class="mt-auto d-flex flex-column mb-12">
                         <p v-if="movie.notation != null">Votre note : {{ movie.notation }}</p>
                         <p v-else>Aucune note.</p>
 
+                        <!-- Navigation entre les pages -->
                         <div class="d-flex">
                             <v-btn color="green" v-on:click="goToNotation">Noter</v-btn>
                             <v-btn color="primary" class="ml-2" v-on:click="goToEdit">Modifier</v-btn>
                             <v-btn color="red" class="ml-auto" v-on:click="goToDelete">Supprimer</v-btn>
                         </div>
+
                     </div>
+
                 </div>
                 
                 <div v-else>
@@ -68,9 +77,11 @@ export default {
     mounted() {
         this.movie = this.listMovie.find(x => x.id == this.movieId); // Utiliser this.movieId pour accéder à la valeur de movieId
         
+        //Envoi la note du film au composant enfant NotationComponent
         if(this.movie.notation != null && !isNaN(this.movie.notation))
             this.movieNotation = this.movie.notation
         else
+            //Si aucune note, propose par defaut une note de "1" à l'utilisateur
             this.movieNotation = 1;
     },
     computed: {
@@ -100,5 +111,4 @@ export default {
         aspect-ratio: 3/4;
         max-width: 160px;
     }
-/* Votre style ici */
 </style>

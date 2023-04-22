@@ -1,5 +1,5 @@
 <template>
-    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+    <!-- Search bar -->
     <div class="margin-header bg-search">
       <div class="mt-16 mx-auto w-50 sub-element-bg-search">
         <h1 class="title">Chercher un film</h1>
@@ -8,6 +8,7 @@
       </div>
     </div>
 
+    <!-- Liste des films -->
     <div class="mx-8">
       <div class="mt-8">
       <div v-if="movieSearched.length > 0" class="d-flex movie-spacing">
@@ -20,7 +21,7 @@
       </div>
     </div>
 
-
+    <!-- Bouton ajouter -->
     <br/><br/>
     <div class="d-flex justify-center">
       <v-btn color="green mt-6" v-on:click="goToCreate">Ajouter un film</v-btn>
@@ -65,7 +66,6 @@
   .bg-search {
     background-image: url(https://cdn.shopify.com/s/files/1/0830/9575/articles/dune-bella-grace-movie-poster-header_e707fdce-6e5f-4337-8c13-24ad22655693_2048x.jpg?v=1681287597);
     background-size: cover;
-    /* backdrop-filter: blur(4px); */
   }
 
   .title {
